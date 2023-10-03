@@ -1,0 +1,16 @@
+<!-- 
+    layouts/shortcodes/soundcloud/playlist.html
+    
+    this is a shortcode to embed a soundcloud playlist
+    uses an iframe to embed the html playlist from soundcloud
+
+    use:
+    {{< soundcloud/playlist ########## >}}
+    where ########## is the playlist ID to embed
+    
+-->
+
+<div class="embed soundcloud-player">
+    <iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay" 
+    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/{{ index .Params 0 }}&color=%23c9622e&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
+</div>
