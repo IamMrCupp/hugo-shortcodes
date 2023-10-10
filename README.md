@@ -9,7 +9,7 @@ This is a collection of shortcode to be used in hugo based setups.
 <a href="https://gohugo.io/"><img src="https://raw.githubusercontent.com/gohugoio/gohugoioTheme/master/static/images/hugo-logo-wide.svg?sanitize=true" alt="Hugo" width="565"></a>
 
 ## Collection
-- partials/soundcloud
+- layouts/shortcodes/soundcloud
     ```
     this is used for embedding playlists into hugo pages/posts/etc
     ```
