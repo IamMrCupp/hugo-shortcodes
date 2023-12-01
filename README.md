@@ -11,6 +11,14 @@ This is a collection of shortcode to be used in hugo based setups.
 ## Collection
 - layouts/shortcodes/soundcloud
     ```
-    this is used for embedding playlists into hugo pages/posts/etc
+    this is used for embedding soundcloud elements into hugo pages/posts/etc
+    ```
+- layouts/shortcodes/youtube
+    ```
+    this is used for embedding youtube elements into hugo pages/posts/etc
+    ```
+- layouts/shortcodes/discord
+    ```
+    this is used for embedding discord into hugo pages/posts/etc
     ```
 
