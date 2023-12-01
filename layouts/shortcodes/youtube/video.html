@@ -1,0 +1,11 @@
+<!-- 
+    layouts/shortcodes/youtube/video.html
+    
+    this is a shortcode to embed a youtube video
+    uses an iframe to embed the html from youtube
+-->
+
+<div class="embed youtube-player">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ index .Params 0 }}?si=tnssitehugoshortlink" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+
