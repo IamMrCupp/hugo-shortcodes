@@ -1,11 +1,11 @@
 <!-- 
     layouts/shortcodes/discord/chatroom.html
     
-    this is a shortcode to embed a discord chatroom
+    this is a shortcode to embed a discord widget
     uses an iframe to embed the html discord client
 -->
 
-<div class="embed discord-embed">
-    <iframe width="100%" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
-    src="https://discord.com/widget?id={{ index .Params 0 }}&theme=dark"></iframe>
+<div class="embed discord-widget">
+    <iframe width="100%" height="100%" allowtransparency="true" frameborder="0" allow="clipboard-write; fullscreen" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+    src="https://e.widgetbot.io/channels/991018898067439626/{{ index .Params 0 }}&theme=dark"></iframe>
 </div>
