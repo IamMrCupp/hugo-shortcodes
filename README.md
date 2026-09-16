@@ -20,6 +20,7 @@ This is a collection of shortcode to be used in hugo based setups.
 - layouts/shortcodes/discord
     ```
     this is used for embedding discord into hugo pages/posts/etc
+    note: discord/chatroom takes guild ID then channel ID as of v0.5.0
     ```
 - layouts/shortcodes/instagram
     ```
