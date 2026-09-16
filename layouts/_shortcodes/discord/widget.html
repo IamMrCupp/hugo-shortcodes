@@ -1,8 +1,14 @@
-<!-- 
-    layouts/shortcodes/discord/chatroom.html
-    
-    this is a shortcode to embed a discord widget
-    uses an iframe to embed the html discord client
+<!--
+    layouts/_shortcodes/discord/widget.html
+
+    Embeds Discord's own server widget — member list plus a join link.
+    Takes the guild (server) ID.
+
+    Usage (shortcode braces omitted below — Go templates parse them even
+    inside an HTML comment, which breaks the build):
+      < discord/widget <guild-id> >
+
+    The guild's widget must be enabled in Server Settings for this to render.
 -->
 
 <div class="embed discord-widget">

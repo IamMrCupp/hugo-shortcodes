@@ -1,11 +1,33 @@
-<!-- 
-    layouts/shortcodes/discord/chatroom.html
-    
-    this is a shortcode to embed a discord widget
-    uses an iframe to embed the html discord client
+<!--
+    layouts/_shortcodes/discord/chatroom.html
+
+    Embeds a Discord channel as a full chat client, via widgetbot.io.
+
+    Takes the guild (server) ID first, then the channel ID — matching the
+    argument order of discord/widget, which takes the guild alone. Both IDs
+    are parameters: an earlier version hardcoded one specific guild, so every
+    site calling this shortcode embedded that server's chat no matter which
+    channel it asked for (issue #3).
+
+    Usage (shortcode braces omitted below — Go templates parse them even
+    inside an HTML comment, which breaks the build):
+      < discord/chatroom <guild-id> <channel-id> >
+
+    Both IDs come from Discord with Developer Mode on: right-click the server
+    or channel and Copy ID. The guild's widget must be enabled for widgetbot
+    to render it.
 -->
+
+{{- $guild := .Get 0 -}}
+{{- $channel := .Get 1 -}}
+{{- if not $guild -}}
+  {{- errorf "discord/chatroom: missing guild ID — use < discord/chatroom <guild-id> <channel-id> > (called from %s)" .Position -}}
+{{- end -}}
+{{- if not $channel -}}
+  {{- errorf "discord/chatroom: missing channel ID — this shortcode now takes the guild ID first, then the channel (called from %s)" .Position -}}
+{{- end -}}
 
 <div class="embed discord-widget">
     <iframe width="100%" height="800" allowtransparency="true" frameborder="0" allow="clipboard-write; fullscreen" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
-    src="https://e.widgetbot.io/channels/991018898067439626/{{ index .Params 0 }}"></iframe>
+    src="https://e.widgetbot.io/channels/{{ $guild }}/{{ $channel }}"></iframe>
 </div>
