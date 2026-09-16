@@ -21,4 +21,8 @@ This is a collection of shortcode to be used in hugo based setups.
     ```
     this is used for embedding discord into hugo pages/posts/etc
     ```
+- layouts/shortcodes/instagram
+    ```
+    this is used for linking or embedding instagram posts in hugo pages/posts/etc
+    ```
 

@@ -1,0 +1,48 @@
+<!--
+    layouts/_shortcodes/instagram/post.html
+
+    Renders a link card for an Instagram post by DEFAULT — no third-party
+    JavaScript, nothing fetched from Meta, and it still works when the viewer
+    blocks trackers or Instagram is having a bad day.
+
+    Pass embed="true" to load Instagram's embed.js and render the real inline
+    embed instead. That puts Meta's script (and its cookies) on every page that
+    uses it, so it is opt-in per call rather than the default.
+
+    Meta retired the public oEmbed endpoint, so there is no way to show the
+    actual photo or video without embed.js or an app token. The card links out
+    rather than pretending it can.
+
+    Usage (shortcode braces omitted below — Go templates parse them even
+    inside an HTML comment, which breaks the build):
+      < instagram/post DdVBnCxGKUm >
+      < instagram/post id="DdVBnCxGKUm" caption="Photos and clips from the day" >
+      < instagram/post id="DdVBnCxGKUm" embed="true" >
+
+    Hugo forbids mixing positional and named params in one call, so the bare
+    positional form is supported for parity with the other shortcodes here, and
+    the named form is used whenever you want caption or embed.
+
+    Styling: the consuming site styles .instagram-card and its children — this
+    module ships no CSS, same as the rest of the collection. See README.md for
+    a starting point.
+-->
+
+{{- $id := or (.Get "id") (.Get 0) -}}
+{{- if not $id -}}
+  {{- errorf "instagram/post: missing post ID — use < instagram/post DdVBnCxGKUm > or id=\"...\" (called from %s)" .Position -}}
+{{- end -}}
+{{- $url := printf "https://www.instagram.com/p/%s/" $id -}}
+
+{{- if eq (.Get "embed" | default "false") "true" -}}
+<div class="embed instagram-post">
+    <blockquote class="instagram-media" data-instgrm-permalink="{{ $url }}" data-instgrm-version="14"></blockquote>
+    <script async src="https://www.instagram.com/embed.js"></script>
+</div>
+{{- else -}}
+<a class="embed instagram-card" href="{{ $url }}" target="_blank" rel="noopener">
+    <span class="instagram-card-label">Instagram</span>
+    <span class="instagram-card-text">{{ .Get "caption" | default "View this post on Instagram" }}</span>
+    <span class="instagram-card-cta">Open &rarr;</span>
+</a>
+{{- end -}}
