@@ -1,0 +1,35 @@
+<!--
+    layouts/_shortcodes/bandcamp/album.html
+
+    Embeds Bandcamp's player for a single album.
+
+    Usage (shortcode braces omitted below — Go templates parse them even
+    inside an HTML comment, which breaks the build):
+      < bandcamp/album ########## >
+      < bandcamp/album id="##########" >
+
+    The ID is Bandcamp's numeric album ID, which is NOT in the URL. Find it in
+    the release page's Share / Embed dialog (the "album=" value), or in the
+    page source's data-tralbum JSON.
+
+    Colours come from site params so each site sets them once:
+      params.bandcamp.linkColor   hex without '#', default 0687f5 (Bandcamp blue)
+      params.bandcamp.background  333333 (dark) or ffffff (light), default 333333
+    The player is transparent, so background only affects its controls.
+
+    Bandcamp's player loads Google Analytics — third-party, like the YouTube
+    and SoundCloud embeds.
+-->
+
+{{- $id := or (.Get "id") (.Get 0) -}}
+{{- if not $id -}}
+  {{- errorf "bandcamp/album: missing album ID — use < bandcamp/album ########## > (called from %s)" .Position -}}
+{{- end -}}
+{{- $cfg := site.Params.bandcamp | default dict -}}
+{{- $link := index $cfg "linkcolor" | default "0687f5" -}}
+{{- $bg := index $cfg "background" | default "333333" -}}
+
+<div class="embed bandcamp-player">
+    <iframe style="border: 0; width: 100%; height: 120px;" loading="lazy" title="Bandcamp player"
+    src="https://bandcamp.com/EmbeddedPlayer/album={{ $id }}/size=large/bgcol={{ $bg }}/linkcol={{ $link }}/tracklist=false/artwork=small/transparent=true/" seamless></iframe>
+</div>
